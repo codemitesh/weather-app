@@ -4,13 +4,14 @@ export default function SearchWeather() {
   const [search, setSearch] = useState("Pune");
   const [data, setData] = useState([]);
   const [input, setInput] = useState("");
+  console.log(process.env);
 
   let componentMounted = true;
 
   useEffect(() => {
     const fetchWeather = async () => {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=e921b6c3949458e5e779193636b6d173`
+        `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${process.env.REACT_APP_API_KEY}`
       );
       if (componentMounted) {
         setData(await response.json());
